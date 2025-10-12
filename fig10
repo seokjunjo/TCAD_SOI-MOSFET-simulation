@@ -1,0 +1,130 @@
+# ---------- TSi = 0.20 um ----------
+go atlas
+
+mesh space.mult=1.0
+x.mesh loc=0.00  spacing=0.1
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.5  spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.1
+y.mesh loc=-0.017 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.200  spacing=0.02
+y.mesh loc=0.600  spacing=0.02
+y.mesh loc=1.800  spacing=0.1
+
+region num=1 y.max=0 material=SiO2
+region num=2 y.min=0 y.max=0.2 material=Silicon
+region num=3 y.min=0.2 y.max=0.6 material=SiO2
+region num=4 y.min=0.6 y.max=1.8 material=Silicon
+
+electrode name=gate      x.min=1.0 x.max=2.0 y.min=-0.017 y.max=-0.017
+electrode name=source    x.min=0.0 x.max=0.5 y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5 x.max=3.0 y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0 x.max=3.0 y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0 x.right=1.0 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=2.0 x.right=3.0 y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi impact print
+
+method gummel autonr
+solve init
+solve name=gate vgate=3.0
+method newton trap autonr
+log outf=tsi020.log
+solve name=drain vdrain=0.0 cname=drain
+solve name=drain vdrain=0.1 vstep=0.1 vfinal=3.0 cname=drain
+log off
+
+# ---------- TSi = 0.10 um ----------
+go atlas
+
+mesh space.mult=1.0
+x.mesh loc=0.00  spacing=0.1
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.5  spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.1
+y.mesh loc=-0.017 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.100  spacing=0.01
+y.mesh loc=0.300  spacing=0.02
+y.mesh loc=1.800  spacing=0.1
+
+region num=1 y.max=0     material=SiO2
+region num=2 y.min=0 y.max=0.1 material=Silicon
+region num=3 y.min=0.1 y.max=0.3 material=SiO2
+region num=4 y.min=0.3 y.max=1.8 material=Silicon
+
+electrode name=gate      x.min=1.0 x.max=2.0 y.min=-0.017 y.max=-0.017
+electrode name=source    x.min=0.0 x.max=0.5 y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5 x.max=3.0 y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0 x.max=3.0 y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0 x.right=1.0 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=2.0 x.right=3.0 y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi impact print
+
+method gummel autonr
+solve init
+solve name=gate vgate=3.0
+method newton trap autonr
+log outf=tsi010.log
+solve name=drain vdrain=0.0 cname=drain
+solve name=drain vdrain=0.1 vstep=0.1 vfinal=3.0 cname=drain
+log off
+
+# ---------- TSi = 0.05 um ----------
+go atlas
+
+mesh space.mult=1.0
+x.mesh loc=0.00  spacing=0.1
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.5  spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.1
+y.mesh loc=-0.017 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.050  spacing=0.01
+y.mesh loc=0.250  spacing=0.02
+y.mesh loc=1.800  spacing=0.1
+
+region num=1 y.max=0     material=SiO2
+region num=2 y.min=0 y.max=0.05 material=Silicon
+region num=3 y.min=0.05 y.max=0.25 material=SiO2
+region num=4 y.min=0.25 y.max=1.8 material=Silicon
+
+electrode name=gate      x.min=1.0 x.max=2.0 y.min=-0.017 y.max=-0.017
+electrode name=source    x.min=0.0 x.max=0.5 y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5 x.max=3.0 y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0 x.max=3.0 y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0 x.right=1.0 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=2.0 x.right=3.0 y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi impact print
+
+method gummel autonr
+solve init
+solve name=gate vgate=3.0
+method newton trap autonr
+log outf=tsi005.log
+solve name=drain vdrain=0.0 cname=drain
+solve name=drain vdrain=0.1 vstep=0.1 vfinal=3.0 cname=drain
+log off
+
+
+# ---------- Overlay ----------
+tonyplot -overlay tsi005.log tsi010.log tsi020.log
+quit
