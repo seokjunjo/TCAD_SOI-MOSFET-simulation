@@ -1,0 +1,183 @@
+# -------------- TOX = 0.017 um --------------
+go atlas
+mesh space.mult=1.0
+x.mesh loc=0.00 spacing=0.1
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.50 spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.1
+y.mesh loc=-0.017 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.200  spacing=0.02
+y.mesh loc=0.600  spacing=0.02
+y.mesh loc=1.800  spacing=0.1
+
+region num=1 y.max=0     material=SiO2
+region num=2 y.min=0 y.max=0.2 material=Silicon
+region num=3 y.min=0.2 y.max=0.6 material=SiO2
+region num=4 y.min=0.6 y.max=1.8 material=Silicon
+
+electrode name=gate      x.min=1.0 x.max=2.0 y.min=-0.017 y.max=-0.017
+electrode name=source    x.min=0.0 x.max=0.5 y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5 x.max=3.0 y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0 x.max=3.0 y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0 x.right=1.0 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=2.0 x.right=3.0 y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi impact print
+
+save outf=tox020_structure.str
+
+method gummel autonr
+solve init
+solve name=gate vgate=3.0
+
+method newton trap autonr
+log outf=tox020_vds.log
+solve name=drain vdrain=0.0 cname=drain
+solve name=drain vstep=0.05 vfinal=3.0 cname=drain
+log off
+
+
+# -------------- TOX = 0.010 um --------------
+go atlas
+mesh space.mult=1.0
+x.mesh loc=0.00 spacing=0.1
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.50 spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.1
+y.mesh loc=-0.010 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.200  spacing=0.02
+y.mesh loc=0.600  spacing=0.02
+y.mesh loc=1.800  spacing=0.1
+
+region num=1 y.max=0     material=SiO2
+region num=2 y.min=0 y.max=0.2 material=Silicon
+region num=3 y.min=0.2 y.max=0.6 material=SiO2
+region num=4 y.min=0.6 y.max=1.8 material=Silicon
+
+electrode name=gate      x.min=1.0 x.max=2.0 y.min=-0.010 y.max=-0.010
+electrode name=source    x.min=0.0 x.max=0.5 y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5 x.max=3.0 y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0 x.max=3.0 y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0 x.right=1.0 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=2.0 x.right=3.0 y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi impact print
+
+save outf=tox010_structure.str
+
+method gummel autonr
+solve init
+solve name=gate vgate=3.0
+
+method newton trap autonr
+log outf=tox010_vds.log
+solve name=drain vdrain=0.0 cname=drain
+solve name=drain vstep=0.05 vfinal=3.0 cname=drain
+log off
+
+
+# -------------- TOX = 0.005 um --------------
+go atlas
+mesh space.mult=1.0
+x.mesh loc=0.00 spacing=0.1
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.50 spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.1
+y.mesh loc=-0.005 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.200  spacing=0.02
+y.mesh loc=0.600  spacing=0.02
+y.mesh loc=1.800  spacing=0.1
+
+region num=1 y.max=0     material=SiO2
+region num=2 y.min=0 y.max=0.2 material=Silicon
+region num=3 y.min=0.2 y.max=0.6 material=SiO2
+region num=4 y.min=0.6 y.max=1.8 material=Silicon
+
+electrode name=gate      x.min=1.0 x.max=2.0 y.min=-0.005 y.max=-0.005
+electrode name=source    x.min=0.0 x.max=0.5 y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5 x.max=3.0 y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0 x.max=3.0 y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0 x.right=1.0 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=2.0 x.right=3.0 y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi impact print
+
+save outf=tox005_structure.str
+
+method gummel autonr
+solve init
+solve name=gate vgate=3.0
+
+method newton trap autonr
+log outf=tox005_vds.log
+solve name=drain vdrain=0.0 cname=drain
+solve name=drain vstep=0.05 vfinal=3.0 cname=drain
+log off
+
+
+# -------------- TOX = 0.002 um --------------
+go atlas
+mesh space.mult=1.0
+x.mesh loc=0.00 spacing=0.1
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.50 spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.1
+y.mesh loc=-0.002 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.200  spacing=0.02
+y.mesh loc=0.600  spacing=0.02
+y.mesh loc=1.800  spacing=0.1
+
+region num=1 y.max=0     material=SiO2
+region num=2 y.min=0 y.max=0.2 material=Silicon
+region num=3 y.min=0.2 y.max=0.6 material=SiO2
+region num=4 y.min=0.6 y.max=1.8 material=Silicon
+
+electrode name=gate      x.min=1.0 x.max=2.0 y.min=-0.002 y.max=-0.002
+electrode name=source    x.min=0.0 x.max=0.5 y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5 x.max=3.0 y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0 x.max=3.0 y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0 x.right=1.0 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=2.0 x.right=3.0 y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi impact print
+
+save outf=tox002_structure.str
+
+method gummel autonr
+solve init
+solve name=gate vgate=3.0
+
+method newton trap autonr
+log outf=tox002_vds.log
+solve name=drain vdrain=0.0 cname=drain
+solve name=drain vstep=0.05 vfinal=3.0 cname=drain
+log off
+
+# ---- Ã«Â§ÂÃ¬Â§ÂÃ«Â§ÂÃ¬ÂÂ Ã­ÂÂ Ã«Â²ÂÃ¬ÂÂ Ã¬ÂÂ¤Ã«Â²ÂÃ« ÂÃ¬ÂÂ´ ----
+tonyplot -overlay tox020_vds.log tox010_vds.log tox005_vds.log tox002_vds.log
+quit
+#fig12
