@@ -1,0 +1,122 @@
+# --- PDSOI Transfer: Tsi=0.20um, Tox=0.017um, TBOX=0.40um, VDS=0.1V ---
+# --- Lg = 1.00 um ---
+go atlas
+mesh space.mult=1.0
+x.mesh loc=0.00 spacing=0.10
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.50 spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.10
+y.mesh loc=-0.017 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.200  spacing=0.02
+y.mesh loc=0.600  spacing=0.02
+y.mesh loc=1.800  spacing=0.10
+
+region num=1 y.max=0     material=SiO2
+region num=2 y.min=0 y.max=0.20 material=Silicon
+region num=3 y.min=0.20 y.max=0.60 material=SiO2
+region num=4 y.min=0.60 y.max=1.80 material=Silicon
+
+electrode name=gate      x.min=1.00 x.max=2.00 y.min=-0.017 y.max=-0.017
+electrode name=source    x.min=0.0  x.max=0.5  y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5  x.max=3.0  y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0  x.max=3.0  y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0  x.right=1.1 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=1.9 x.right=3.0  y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi print
+method gummel autonr
+solve init
+solve name=drain vdrain=0.1
+log outf=pdsoi_tsi020_Lg100_IdVg_Vd01.log
+solve name=gate vgate=0
+solve name=gate vstep=0.05 vfinal=1.6
+log off
+
+# --- Lg = 0.70 um ---
+go atlas
+mesh space.mult=1.0
+x.mesh loc=0.00 spacing=0.10
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.50 spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.10
+y.mesh loc=-0.017 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.200  spacing=0.02
+y.mesh loc=0.600  spacing=0.02
+y.mesh loc=1.800  spacing=0.10
+
+region num=1 y.max=0     material=SiO2
+region num=2 y.min=0 y.max=0.20 material=Silicon
+region num=3 y.min=0.20 y.max=0.60 material=SiO2
+region num=4 y.min=0.60 y.max=1.80 material=Silicon
+
+electrode name=gate      x.min=1.15 x.max=1.85 y.min=-0.017 y.max=-0.017
+electrode name=source    x.min=0.0  x.max=0.5  y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5  x.max=3.0  y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0  x.max=3.0  y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0  x.right=1.08 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=1.92 x.right=3.0  y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi print
+method gummel autonr
+solve init
+solve name=drain vdrain=0.1
+log outf=pdsoi_tsi020_Lg070_IdVg_Vd01.log
+solve name=gate vgate=0
+solve name=gate vstep=0.05 vfinal=1.6
+log off
+
+# --- Lg = 0.60 um ---
+go atlas
+mesh space.mult=1.0
+x.mesh loc=0.00 spacing=0.10
+x.mesh loc=1.15 spacing=0.01
+x.mesh loc=1.50 spacing=0.02
+x.mesh loc=1.85 spacing=0.01
+x.mesh loc=3.00 spacing=0.10
+y.mesh loc=-0.017 spacing=0.02
+y.mesh loc=0.000  spacing=0.01
+y.mesh loc=0.200  spacing=0.02
+y.mesh loc=0.600  spacing=0.02
+y.mesh loc=1.800  spacing=0.10
+
+region num=1 y.max=0     material=SiO2
+region num=2 y.min=0 y.max=0.20 material=Silicon
+region num=3 y.min=0.20 y.max=0.60 material=SiO2
+region num=4 y.min=0.60 y.max=1.80 material=Silicon
+
+electrode name=gate      x.min=1.20 x.max=1.80 y.min=-0.017 y.max=-0.017
+electrode name=source    x.min=0.0  x.max=0.5  y.min=0.0    y.max=0.0
+electrode name=drain     x.min=2.5  x.max=3.0  y.min=0.0    y.max=0.0
+electrode name=substrate x.min=0.0  x.max=3.0  y.min=1.8    y.max=1.8
+
+doping uniform p.type conc=1e17 region=2
+doping uniform p.type conc=1e17 region=4
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=0.0  x.right=1.0 y.top=0.0 ratio.lateral=0.1
+doping gaussian n.type conc=1e20 characteristic=0.2 region=2 x.left=2.0 x.right=3.0  y.top=0.0 ratio.lateral=0.1
+
+contact name=gate workfunction=4.15
+models cvt srh auger bgn fermi print
+method gummel autonr
+solve init
+solve name=drain vdrain=0.1
+log outf=pdsoi_tsi020_Lg060_IdVg_Vd01.log
+solve name=gate vgate=0
+solve name=gate vstep=0.05 vfinal=1.6
+log off
+
+# --- Overlay (PDSOI, Transfer, VDS=0.1V) ---
+tonyplot -overlay pdsoi_tsi020_Lg060_IdVg_Vd01.log pdsoi_tsi020_Lg070_IdVg_Vd01.log pdsoi_tsi020_Lg100_IdVg_Vd01.log
+quit
+#fig17
